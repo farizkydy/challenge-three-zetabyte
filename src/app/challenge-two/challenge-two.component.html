@@ -1,0 +1,99 @@
+<style>
+    :host {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 14px;
+      color: #333;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  
+    .main-title {
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .text-description {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  
+  
+    
+  </style>
+  
+  <!-- Toolbar -->
+  <div class="container">
+    <h1 class="main-title">The Playlists</h1>
+    <h3 class="text-description">Here you can create your own playlist, edit your already existing playlist, add songs, and show it to the world!</h3>
+    <button (click)="openModal()">New Playlist</button>
+  
+  <div class="playlist-card">
+      <div class="card" *ngFor="let playlist of playlists; let i=index">
+          <h3 class="card-title">{{playlist.title_playlist}}</h3>
+          <span class="card-subtitle"> total {{playlist.total_song}} songs, {{playlist.total_duration}} minutes </span>
+          <div class="card-content">
+              <p>{{playlist.description}}</p>
+              <div class="list list-base" *ngFor="let song of playlist.songs">
+                  <div class="list-item list-item-avatar">
+                      <div class="list-item-content">
+                          <div class="list-text">
+                              <h4>{{song.title_song}}</h4>
+                              <p>by {{song.artist}} · {{song.duration}} minutes</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="card-actions">
+              <button class="delete">Delete</button>
+              <button class="edit" (click)="openModalWithClass(i)">Edit</button>
+          </div>
+      </div>
+  </div>
+  </div> 
+
+  <!--  -->
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+  
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="modalPopUp.hide()"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+  
+    <div class="modal-body">
+     <form>
+         <input formControlName="playlist" placeholder="playlts">
+         <input formControlName="description" placeholder="descrip">
+         <input formControlName="song_title" placeholder="song title">
+         <input formControlName="artist" placeholder="artist">
+         <input formControlName="duration" placeholder="duration">
+         <button>Add</button>
+         <button>Minus</button>
+     </form>
+    
+    </div>
+  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="modalPopUp.hide()">
+        Close
+      </button>
+      <button type="button" class="btn btn-default" (click)="modalPopUp.hide()">
+          Submit
+        </button>
+    </div>
+  </ng-template>
+  
+  
+  
+ 
+  
+  

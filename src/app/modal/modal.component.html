@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Modal</h4>
+
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="modalPopUp.hide()"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="itemForm" (ngSubmit)="saveToList(itemForm)">
+    <input
+      formControlName="playlist"
+      placeholder="playlts"
+      value="{{ playlist?.title_playlist }}"
+    />
+    <input
+      formControlName="description"
+      placeholder="descrip"
+      value="{{ playlist?.description }}"
+    />
+    <div class="wrapper-content" *ngIf="!playlist">
+      <input formControlName="song_title" placeholder="song title" />
+      <input formControlName="artist" placeholder="artist" />
+      <input formControlName="duration" placeholder="duration" />
+    </div>
+    <div class="wrapper-content-playlist" *ngIf="playlist">
+      <div class="wrapper-content" *ngFor="let song of playlist.songs">
+        <input
+          formControlName="song_title"
+          placeholder="song title"
+          value="{{ song.title_song }}"
+        />
+        <input
+          formControlName="artist"
+          placeholder="artist"
+          value="{{ song.artist }}"
+        />
+        <input
+          formControlName="duration"
+          placeholder="duration"
+          value="{{ song.duration }}"
+        />
+      </div>
+    </div>
+    <button>Add</button>
+    <button>Minus</button>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" (click)="closeModal()">
+        Close
+      </button>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </form>
+</div>
