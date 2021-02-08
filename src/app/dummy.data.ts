@@ -15,35 +15,35 @@ export class PlaylistModel {
 
 export const CARD_DATA_PLAYLIST: PlaylistModel[] = [
   {
-    titleplaylist: 'Kopikustik',
+    titleplaylist: 'frz@gmail.com',
     // totalsong: 0,
     // totalduration: 0,
-    description: 'lorem kakaka lo',
+    description: 'Fariz',
     songs: [
       {
-        titlesong: 'judul lagu',
-        artist: 'penyanyinya',
+        titlesong: 'CPU',
+        artist: 'AMD',
         duration: 6
       }, {
-        titlesong: 'judul lagu',
-        artist: 'penyanyinya',
+        titlesong: 'Motherboard',
+        artist: 'MSI Pro',
         duration: 8
       }
     ]
   },
   {
-    titleplaylist: 'Selain rock',
+    titleplaylist: 'jui@mail.com',
     // totalsong: 0,
     // totalduration: 0,
-    description: 'lorem kakakao',
+    description: 'Jul',
     songs: [
       {
-        titlesong: 'judul lagu',
-        artist: 'penyanyinya',
+        titlesong: 'Screen',
+        artist: 'LCD',
         duration: 6
       }, {
-        titlesong: 'judul lagu',
-        artist: 'penyanyinya',
+        titlesong: 'Mouse',
+        artist: 'Razer',
         duration: 7
       }
     ]

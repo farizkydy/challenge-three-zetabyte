@@ -7,39 +7,44 @@
     margin: 20px 0;
     padding: 15px;
   }
+  select {
+    word-wrap: normal;
+    padding: 7px 64px 7px 7px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
 </style>
 <div class="container">
-  <h1 class="main-title">The Playlists</h1>
-  <h3 class="text-description">
-    Here you can create your own playlist, edit your already existing playlist,
-    add songs, and show it to the world!
-  </h3>
+  <h1 class="main-title">Linusu Tech Shop</h1>
+  <h6 class="text-description">
+    Welcome to the best tech shop in town! You can buy any PC part you want as
+    long as you have money. But remember kids, don't drop your PC component!
+  </h6>
   <button
     class="btn btn-primary"
     (click)="onCreatePlaylist(); openModal(content)"
   >
-    New Playlist
+    New Order
   </button>
   <br /><br />
   <div class="playlist-card">
     <div class="card" *ngFor="let playlist of playlists; let i = index">
-      <h3 class="card-title">{{ playlist.titleplaylist }}</h3>
+      <h3 class="card-title">${{ countMinutes(playlist.songs) }}</h3>
       <span class="card-subtitle">
-        total {{ playlist.songs.length }} songs,
-        {{ countMinutes(playlist.songs) }} minutes
+        by {{ playlist.description }} .
+        {{ playlist.titleplaylist }}
       </span>
       <!-- {{ countSong(playlist.songs) }} or {{ playlist.songs.length }} -->
       <div class="card-content">
-        <p>{{ playlist.description }}</p>
+        <!-- <p>{{ playlist.description }}</p> -->
         <table class="table table-striped">
           <tbody>
             <tr *ngFor="let song of playlist.songs; index as song_i">
               <th scope="row">{{ song_i + 1 }}</th>
               <td>
                 <h4>{{ song.titlesong }}</h4>
-              </td>
-              <td>
-                <p>by {{ song.artist }} · {{ song.duration }} minutes</p>
+                <span>{{ song.artist }} . ${{ song.duration }}</span>
               </td>
             </tr>
           </tbody>
@@ -63,7 +68,7 @@
 <!-- this is modal layout for manage playlist -->
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Create New Playlist / Edit Playlist</h4>
+    <h4 class="modal-title">Create New Order / Edit Order</h4>
     <button
       type="button"
       class="close"
@@ -75,21 +80,21 @@
   </div>
   <div class="modal-body">
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Playlist Name</label>
+      <label class="col-sm-2 col-form-label">Name</label>
       <div class="col-sm-10">
         <input
           [(ngModel)]="playlistselected.titleplaylist"
-          type="text"
+          type="option"
           class="form-control"
         />
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Description</label>
+      <label class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
         <input
           [(ngModel)]="playlistselected.description"
-          type="text"
+          type="email"
           class="form-control"
         />
       </div>
@@ -98,25 +103,30 @@
       <table class="table table-striped">
         <tbody>
           <tr>
-            <td>Title Song</td>
-            <td>Artist</td>
-            <td>Duration</td>
+            <td>Name Product</td>
+            <td>Name Item</td>
+            <td>Price</td>
             <td>&nbsp;</td>
           </tr>
           <tr *ngFor="let song of playlistselected.songs; index as i">
             <td>
-              <input
+              <form
+                method="get"
                 [(ngModel)]="playlistselected.songs[i].titlesong"
-                type="text"
-                class="form-control"
-              />
+              >
+                <select name="Select Category">
+                  <option value="Selec Category">{{ song.artist }}</option>
+                  <option value="{{ song.artist }}">{{ song.artist }}</option>
+                </select>
+              </form>
             </td>
             <td>
-              <input
-                [(ngModel)]="playlistselected.songs[i].artist"
-                type="text"
-                class="form-control"
-              />
+              <form method="get">
+                <select name="Select Item">
+                  <option value="Selec Category"></option>
+                  <option value="Acer">Acer</option>
+                </select>
+              </form>
             </td>
             <td>
               <input
